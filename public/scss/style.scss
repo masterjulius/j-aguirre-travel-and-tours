@@ -1,0 +1,156 @@
+/** J.Aguirre Travel and Tours **/
+/***index****/
+
+.travel-body {
+	.travel-carousel {
+		margin-top: 30px;
+	}
+	.travel-featured {
+		img {
+			width: 100%;
+			height: 100%;
+		}
+		.grid-item {
+			width: 100%;
+			padding: 10px;
+		}
+	}
+	.travel-logo img {
+		float: left;
+		width: 30%;
+		position: relative;
+		margin-top: -35%;
+		margin-left: 35%;
+	}
+	.travel-featuredTours {
+		margin-top: 50px;
+		.grid-item {
+			width: 390px;
+			padding: 10px;
+			margin-bottom: 70px;
+		}
+	}
+	.travel-tagline {
+		text-align: center;
+		margin-bottom: 70px;
+		margin-top: 70px;
+		padding: 30px;
+		background-size: cover;
+		height: 370px;
+		h1 {
+			margin-top: 50px;
+			color: #ffffff;
+		}
+		p {
+			color: #ffffff;
+		}
+	}
+	.travel-airlineslider {
+		margin-top: 40px;
+		margin-bottom: 40px;
+	}
+	.travel-footer {
+		footer {
+			color: white;
+			a {
+				color: #bfffff;
+				&:hover {
+					color: white;
+				}
+			}
+		}
+		.footer-bottom {
+			background: #3d6277;
+			padding: 2em;
+		}
+		.footer-top {
+			background: #2d4958;
+		}
+		.footer-middle {
+			background: #3d6277;
+			padding-top: 2em;
+			color: white;
+		}
+		.subnavigation-container {
+			background: #3d6277;
+		}
+		.subnavigation .nav-link {
+			color: white;
+			font-weight: bold;
+		}
+		.subnavigation-container {
+			text-align: center;
+			.navbar {
+				display: inline-block;
+				margin-bottom: -6px;
+        /* Inline-block margin offffset HACK -Gilron */
+    }
+}
+.col-subnav {
+	a {
+		padding: 1rem 1rem;
+		color: white;
+		font-weight: bold;
+	}
+	.active {
+		border-top: 5px solid orange;
+		background: white;
+		color: black;
+	}
+}
+}
+.travel-carousel-promos {
+	margin-top: 30px;
+}
+.travel-promos {
+	padding: 65px !important;
+	.grid-item {
+		width: 290px;
+		margin-left: 165px;
+		margin-top: -80px;
+		margin-bottom: 70px;
+	}
+	h1 {
+		font-weight: 200;
+	}
+}
+}
+
+/**Sub Navigation**/
+
+/****index end****/
+
+/****promos****/
+
+h2, h3 {
+	font-weight: 200;
+}
+
+.travel-body {
+	.travel-promos .main .sidebar ul {
+		li {
+			margin-left: -30px;
+			list-style: none;
+			color: #4e4d4d;
+		}
+		margin-top: 50px;
+	}
+	.travel-about #map {
+		height: 400px;
+		width: 100%;
+	}
+	.travel-contact ul li {
+		list-style: none;
+		font-size: 20px;
+		display: inline-block;
+		margin-right: 50px;
+	}
+}
+
+/****promos end***/
+/***about***/
+
+/***about end***/
+/***contact body**/
+
+/**contact end***/
