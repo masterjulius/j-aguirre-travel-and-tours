@@ -10,12 +10,14 @@ $featured_message = $config_metadatas != false ? $config_metadatas->conf_feature
 <div class="travel-featuredTours">
 
 	<div class="container">
-		<h3><b>Featured Tours</b></h3>
+		<h3><b>Promos</b></h3>
 <?php
 if ($promo_lists):
 	$index = 1;
 	foreach ($promo_lists as $value):
 		$promo_id = $value->promo_id;
+		$cat_arr = array('Domestic Promos', 'International Promos', 'Land Trip Promos');
+		$promo_cat = $value->promo_category;
 		$thumbnail_id = $value->promo_thumbnail_id;
 		$thumbnail_meta = $this->media_mdl->get_thumbnail_by_id($thumbnail_id);
 		$thumbnail_img = $thumbnail_meta != false ? $images_dir . $thumbnail_meta->media_name : $static_path . '/destination/1.jpg';
@@ -29,10 +31,9 @@ if ($promo_lists):
 						<article class="material-card Blue">
 							<h2>
 								<span><?php echo $value->promo_title; ?></span>
-								<!-- <strong>
-									<i class="fa fa-fw fa-star"></i>
-									The Deer Hunter
-								</strong> -->
+								<strong>
+									<i class="fa fa-fw fa-star"></i> <?php echo $cat_arr[$promo_cat-1] ?>
+								</strong>
 							</h2>
 							<div class="mc-content">
 								<div class="img-container">
@@ -82,7 +83,7 @@ endif;
 <div class="travel-featured">
 	
 	<div class="container">
-		<h3><b>Latest Promos</b></h3>
+		<h3><b>Visas</b></h3>
 <?php
 if ($visa_lists):
 	$index = 1;

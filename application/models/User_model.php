@@ -63,17 +63,17 @@ class User_model extends CI_Model {
 
 	}
 
-	public function get_user_by_id( $user_id, $selectFields = '' ) {
-
-		if (!empty($selectFields)) {
-			if (is_string($selectFields)) {
-				$this->db->select($selectFields);
-			}
+	public function get_user_by_id( $user_id, $selectFields = '', $status = TRUE ) {
+		if ( !empty($selectFields) && is_string($selectFields) ) {
+			$this->db->select($selectFields);
+		} else {
+			$this->db->select('user_id, user_name, user_password, user_img_id, user_role, user_created_date, user_created_by, user_edited_date, user_edited_by');
 		}
-		$this->db->where( array('user_id',TRUE) );
-		$query = $this->db->get('tbl_users');
+		$query = $this->db->get_where( 'tbl_users', array('user_id'=>$user_id, 'user_is_active'=>$status) );
 		if ($query) {
-			return $query->unbuffered_row();
+			if ( $query->num_rows() > 0 ) {
+				return $query->row();
+			}
 		}
 		return null;
 

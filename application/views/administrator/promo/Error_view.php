@@ -47,6 +47,15 @@ echo form_open( $this->uri->uri_string(), '', array( 'target_url' => $target_url
 	<?php echo form_error('promo_title') ?>
 
 	<div class="form-group">
+		<select name="promo_category" class="custom-select form-control">
+			<option value="1">&mdash; Select Promo Type &mdash;</option>
+			<option value="1" <?php echo set_value('promo_category') == 1 ? 'selected' : '' ?>>Domestic Promos</option>
+			<option value="2" <?php echo set_value('promo_category') == 2 ? 'selected' : '' ?>>International Promos</option>
+			<option value="3" <?php echo set_value('promo_category') == 3 ? 'selected' : '' ?>>Land Trip Promos</option>
+		</select>
+	</div>
+
+	<div class="form-group">
 		<textarea name="promo_content" id="promo_content" class="form-control" placeholder="type the content here..."><?php echo set_value('promo_content'); ?></textarea>
 	</div>
 	<?php echo form_error('promo_content') ?>

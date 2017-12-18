@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Config extends CI_Controller {
 
+	public $current_user_session_id;
+	public $current_user_session_role;
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->library( array('user_security', 'page_actions') );
@@ -9,6 +12,8 @@ class Config extends CI_Controller {
 		$this->load->helper( array( 'url', 'html', 'form' ) );
 		$this->load->database();
 		$this->load->model('Config_model', 'cnfg_mdl');
+		$this->current_user_session_id = $this->session->CE_sess_user_id;
+		$this->current_user_session_role = $this->session->CE_sess_user_role;
 	}
 
 	public function save_settings($config_id) {
@@ -22,6 +27,7 @@ class Config extends CI_Controller {
 			$args['conf_about'] = $this->input->post('about');
 			$args['conf_contact_info'] = $this->input->post('contact_info');
 			$args['conf_copyright_message'] = $this->input->post('copyright_message');
+			$args['conf_edited_by'] = $this->current_user_session_id;
 			$save_result = $this->cnfg_mdl->save_settings( $args, $config_id );
 			if ( $save_result ) {
 				redirect( $this->input->post('target_url') );

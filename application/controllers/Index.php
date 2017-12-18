@@ -36,7 +36,28 @@ class Index extends CI_Controller {
 	public function promos() {
 		$this->load->model('Promo_model', 'prmo_mdl');
 		$this->load->model('Social_model', 'social_mdl');
-		$data['promo_lists'] = $this->prmo_mdl->get_datas();
+		$data['domestic_promo_lists'] = $this->prmo_mdl->get_datas(
+			array(
+				'limit'			=>	12,
+				'promo_category'=>	1
+			)
+		);
+		$data['international_promo_lists'] = $this->prmo_mdl->get_datas(
+			array(
+				'limit'			=>	12,
+				'promo_category'=>	2
+			)
+		);
+		$data['land_trips_promo_lists'] = $this->prmo_mdl->get_datas(
+			array(
+				'limit'			=>	12,
+				'promo_category'=>	3
+			)
+		);
+
+		// echo '<pre>';
+		// 	print_r($data['land_trips_promo_lists']);
+		// echo '</pre>';
 		$data['config_metadatas'] = $this->config_mdl->get_config_settings();
 		$social_details = $this->social_mdl->get_social_accounts();
 		$data['social_links'] = array(

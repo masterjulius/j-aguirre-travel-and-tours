@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Users extends CI_Controller {
 
+	public $current_user_session_id;
+	public $current_user_session_role;
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->library( array('user_security', 'page_actions') );
@@ -9,6 +12,8 @@ class Users extends CI_Controller {
 		$this->load->helper( array( 'url', 'html', 'form' ) );
 		$this->load->database();
 		$this->load->model('User_model','usr_mdl');
+		$this->current_user_session_id = $this->session->CE_sess_user_id;
+		$this->current_user_session_role = $this->session->CE_sess_user_role;
 	}
 
 	public function login() {
@@ -98,6 +103,7 @@ class Users extends CI_Controller {
 					// Initialize argument
 					$args = array();
 					$args['user_name'] = $this->input->post('username');
+					$args['user_edited_by'] = $this->current_user_session_id;
 
 					// Get input passwords
 					$new_password = $this->input->post('password');
@@ -138,13 +144,15 @@ class Users extends CI_Controller {
 					// Check if Passwords Matched
 					if ( $password == $cpassword ) {
 						// Matched
-						if ( $this->usr_mdl->save_user( $args ) ) {
+						$args = array();
+						$args['user_name'] = $this->input->post('username');
+						$args['user_password'] = crypt( $password, $salt_param );
+						$args['user_img_id'] = $this->input->post('thumbnail_id');
+						$args['user_role'] = $this->input->post('user_role');
+						$args['user_created_by'] = $this->current_user_session_id;
+						$args['user_edited_by'] = $this->current_user_session_id;
 
-							$args = array();
-							$args['user_name'] = $this->input->post('username');
-							$args['user_password'] = crypt( $password, $salt_param );
-							$args['user_img_id'] = $this->input->post('thumbnail_id');
-							$args['user_role'] = $this->input->post('user_role');
+						if ( $this->usr_mdl->save_user( $args ) ) {
 
 							redirect( $this->input->post('target_url') );
 						}

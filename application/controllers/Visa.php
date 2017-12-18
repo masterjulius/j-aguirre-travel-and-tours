@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class visa extends CI_Controller {
+
+	public $current_user_session_id;
+	public $current_user_session_role;
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->library( array('user_security', 'page_actions') );
@@ -8,6 +12,8 @@ class visa extends CI_Controller {
 		$this->load->helper( array('url', 'html') );
 		$this->load->database();
 		$this->load->model('visa_model', 'visa_mdl');
+		$this->current_user_session_id = $this->session->CE_sess_user_id;
+		$this->current_user_session_role = $this->session->CE_sess_user_role;
 	}
 
 	public function save_visa($visa_id = null) {
@@ -38,11 +44,14 @@ class visa extends CI_Controller {
 				$thumbnail = $this->input->post('thumbnail_id');
 				if ( $thumbnail != '' ) {
 					$visa_args['visa_thumbnail_id'] = $thumbnail;
+				} else {
+					$visa_args['visa_created_by'] = $this->current_user_session_id;
 				}
 
 				$visa_args['visa_title'] = $this->input->post('visa_title');
 				$visa_args['visa_price'] = $this->input->post('visa_price');
 				$visa_args['visa_content'] = $this->input->post('visa_content');
+				$visa_args['visa_edited_by'] = $this->current_user_session_id;
 
 				$save_visa = $this->visa_mdl->save_visa($visa_args);
 				if ($save_visa) {

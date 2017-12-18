@@ -39,6 +39,15 @@ echo form_open( '/promo/save_promo/', '', array( 'target_url' => $target_url ) )
 	</div>
 
 	<div class="form-group">
+		<select name="promo_category" class="custom-select form-control">
+			<option selected value="1">&mdash; Select Promo Type &mdash;</option>
+			<option value="1">Domestic Promos</option>
+			<option value="2">International Promos</option>
+			<option value="3">Land Trip Promos</option>
+		</select>
+	</div>
+
+	<div class="form-group">
 		<textarea name="promo_content" id="promo_content" class="form-control" placeholder="type the content here..."></textarea>
 	</div>
 

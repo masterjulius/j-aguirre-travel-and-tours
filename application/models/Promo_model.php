@@ -9,7 +9,7 @@ class Promo_model extends CI_Model {
 		$order = is_array($params) && array_key_exists('order', $params) ? $params['order'] : 'DESC';
 		$limit = is_array($params) && array_key_exists('limit', $params) ? $params['limit'] : 10;
 
-		$this->db->select('promo_id, promo_title, promo_content, promo_thumbnail_id, promo_created_date, promo_created_by, promo_edited_date, promo_edited_by');
+		$this->db->select('promo_id, promo_title, promo_category, promo_content, promo_thumbnail_id, promo_created_date, promo_created_by, promo_edited_date, promo_edited_by');
 		if (is_array($params)) {
 			if ( array_key_exists('search', $params) ) {
 				if ( is_array($params['search']) ) {
@@ -27,9 +27,16 @@ class Promo_model extends CI_Model {
 				}
 			}
 		}
+		if ( is_array($params) && in_array('group_by', $params) ) {
+			$this->db->group_by( $params['group_by'] );
+		}
 		$this->db->order_by($order_by, $order);
 		$this->db->limit($limit);
-		$query = $this->db->get_where( 'tbl_promos', array('promo_is_active' => $status_param) );
+		if ( is_array($params) && array_key_exists('promo_category', $params) ) {
+			$this->db->where( array('promo_category' => $params['promo_category']) );
+		}
+		$this->db->where( array('promo_is_active' => $status_param) );
+		$query = $this->db->get( 'tbl_promos' );
 		if ($query) {
 			if ($query->num_rows() > 0) {
 				return $query->result();
@@ -41,7 +48,7 @@ class Promo_model extends CI_Model {
 
 	public function get_data_by_id($promo_id, $status = TRUE) {
 
-		$this->db->select('promo_id, promo_title, promo_content, promo_thumbnail_id, promo_created_date, promo_created_by, promo_edited_date, promo_edited_by');
+		$this->db->select('promo_id, promo_title, promo_category, promo_content, promo_thumbnail_id, promo_created_date, promo_created_by, promo_edited_date, promo_edited_by');
 		$query = $this->db->get_where( 'tbl_promos', array('promo_id'=>$promo_id, 'promo_is_active'=>$status) );
 		if ($query) {
 			if ($query->num_rows() > 0) {

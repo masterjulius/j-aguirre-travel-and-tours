@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Promo extends CI_Controller {
+
+	public $current_user_session_id;
+	public $current_user_session_role;
+
 	public function __construct() {
 		parent::__construct();
 		$this->load->library( array('user_security', 'page_actions') );
@@ -8,6 +12,8 @@ class Promo extends CI_Controller {
 		$this->load->helper( array('url', 'html') );
 		$this->load->database();
 		$this->load->model('Promo_model', 'prmo_mdl');
+		$this->current_user_session_id = $this->session->CE_sess_user_id;
+		$this->current_user_session_role = $this->session->CE_sess_user_role;
 	}
 
 	public function save_promo($promo_id = null) {
@@ -33,6 +39,8 @@ class Promo extends CI_Controller {
 				$promo_args = array();
 				if (is_numeric($promo_id)) {	
 					$promo_args['promo_id'] = $promo_id;
+				} else {
+					$promo_args['promo_created_by'] = $this->current_user_session_id;
 				}
 
 				$thumbnail = $this->input->post('thumbnail_id');
@@ -41,7 +49,9 @@ class Promo extends CI_Controller {
 				}
 
 				$promo_args['promo_title'] = $this->input->post('promo_title');
+				$promo_args['promo_category'] = $this->input->post('promo_category');
 				$promo_args['promo_content'] = $this->input->post('promo_content');
+				$promo_args['promo_edited_by'] = $this->current_user_session_id;
 
 				$save_promo = $this->prmo_mdl->save_promo($promo_args);
 				if ($save_promo) {

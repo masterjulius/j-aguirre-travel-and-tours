@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $third_party_URL = base_url( '/public' );
 $copyright_message = $config_metadatas != false ? $config_metadatas->conf_copyright_message : '© Copyright 2017 - J.AGUIRRE All rights reserved.';
+$contact_info = $config_metadatas != false ? $config_metadatas->conf_contact_info : 'xxxxxxxxxxx'; 
 ?>
 		<!--Footer-->
 		<div class="travel-footer">
@@ -18,13 +19,16 @@ $copyright_message = $config_metadatas != false ? $config_metadatas->conf_copyri
 									<address>
 										<ul class="list-unstyled">
 											<li>
-												City Hall<br>
-												212  Street<br>
-												Lawoma<br>
-												735<br>
+												Centro 06<br>
+												Aguinaldo Street<br>
+												Tuguegarao City<br>
+												Cagayan<br>
 											</li>
 											<li>
-												Phone: 0
+												Mobile: <?php echo $contact_info ?>
+											</li>
+											<li>
+												Telephone: 377-2075
 											</li>
 										</ul>
 									</address>
@@ -37,10 +41,10 @@ $copyright_message = $config_metadatas != false ? $config_metadatas->conf_copyri
 									<ul class="list-unstyled">
 										<li><a href="#"></a></li>
 										<li><a href="#">Payment Center</a></li>
-										<li><a href="#">Contact Directory</a></li>
-										<li><a href="#">Forms</a></li>
-										<li><a href="#">News and Updates</a></li>
-										<li><a href="#">FAQs</a></li>
+										<li><a href="#">Loading Station</a></li>
+										<li><a href="#">Ticketing</a></li>
+										<li><a href="#">Visa Assistance</a></li>
+										<li><a href="#">Passporting Assistance</a></li>
 									</ul>
 								</div>
 							</div>
@@ -49,25 +53,24 @@ $copyright_message = $config_metadatas != false ? $config_metadatas->conf_copyri
 								<div class="footer-pad">
 									<h4>Website Information</h4>
 									<ul class="list-unstyled">
-										<li><a href="#">Website Tutorial</a></li>
-										<li><a href="#">Accessibility</a></li>
-										<li><a href="#">Disclaimer</a></li>
-										<li><a href="#">Privacy Policy</a></li>
-										<li><a href="#">FAQs</a></li>
-										<li><a href="#">Webmaster</a></li>
+										<li><a href="#">Home</a></li>
+										<li><a href="#">Promos</a></li>
+										<li><a href="#">Visas</a></li>
+										<li><a href="#">About Us</a></li>
+										<li><a href="#">Contact Us</a></li>
 									</ul>
 								</div>
 							</div>
 							<div class="col-md-3 col-sm-6">
 								<!--Column1-->
 								<div class="footer-pad">
-									<h4>Popular Departments</h4>
+									<h4>Popular Aviations</h4>
 									<ul class="list-unstyled">
-										<li><a href="#">Parks and Recreation</a></li>
-										<li><a href="#">Public Works</a></li>
-										<li><a href="#">Police Department</a></li>
-										<li><a href="#">Fire</a></li>
-										<li><a href="#">Mayor and City Council</a></li>
+										<li><a href="#">Philippine Airline</a></li>
+										<li><a href="#">Cebu Pacific</a></li>
+										<li><a href="#">Emirates</a></li>
+										<li><a href="#">Jet Star</a></li>
+										<li><a href="#">Etihad</a></li>
 										<li>
 											<a href="#"></a>
 										</li>

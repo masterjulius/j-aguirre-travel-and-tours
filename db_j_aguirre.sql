@@ -89,6 +89,7 @@ DROP TABLE IF EXISTS `tbl_promos`;
 CREATE TABLE `tbl_promos` (
   `promo_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `promo_title` text,
+  `promo_category` tinyint(2) DEFAULT '1',
   `promo_content` longtext,
   `promo_thumbnail_id` bigint(20) DEFAULT NULL,
   `promo_created_date` datetime DEFAULT CURRENT_TIMESTAMP,
@@ -97,7 +98,7 @@ CREATE TABLE `tbl_promos` (
   `promo_edited_by` bigint(20) DEFAULT '0',
   `promo_is_active` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`promo_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +107,7 @@ CREATE TABLE `tbl_promos` (
 
 LOCK TABLES `tbl_promos` WRITE;
 /*!40000 ALTER TABLE `tbl_promos` DISABLE KEYS */;
-INSERT INTO `tbl_promos` VALUES (1,'sample','the quick brown fox',NULL,'2017-12-10 17:27:27',0,'2017-12-15 16:06:11',0,0),(2,'another','another content',NULL,'2017-12-10 17:29:51',0,'2017-12-10 17:29:51',0,1),(3,'third sample','this is the third sample',NULL,'2017-12-10 17:30:19',0,'2017-12-10 17:30:19',0,1),(4,'third sample','this is the third samples',NULL,'2017-12-10 17:56:46',0,'2017-12-10 20:06:02',0,0),(5,'third sample','this is the third samplesxxXXXX',NULL,'2017-12-10 17:58:02',0,'2017-12-10 20:06:19',0,0),(6,'natasha','mrs ama xxx',NULL,'2017-12-11 10:46:05',0,'2017-12-11 10:46:23',0,0),(7,'With Thumb','the quick brown fox jumped over the lazy',NULL,'2017-12-11 16:03:49',0,'2017-12-11 16:03:49',0,1),(8,'With thumb 2','the qcuik',9,'2017-12-11 16:04:20',0,'2017-12-11 16:04:20',0,1),(9,'Star wars','Obi wan kenobis',10,'2017-12-11 17:59:06',0,'2017-12-11 17:59:06',0,1),(10,'gaben the man','hehe gaben',11,'2017-12-14 17:01:45',0,'2017-12-14 17:01:45',0,1),(11,'Girl o mine','ohhh ohhh sweet girl oh mine',15,'2017-12-14 20:25:23',0,'2017-12-18 15:47:53',0,0),(12,'Cagayan Maps','this is th ',17,'2017-12-14 20:47:24',0,'2017-12-14 20:47:24',0,1),(13,'Uber','this is an uber...',25,'2017-12-17 10:21:57',0,'2017-12-17 10:21:57',0,1),(14,'Uber2','ok now!',18,'2017-12-17 10:33:00',0,'2017-12-17 18:24:50',0,1),(15,'the title','the quick',20,'2017-12-17 18:25:38',0,'2017-12-17 18:25:38',0,1),(16,'Galaxy','Andromeda',28,'2017-12-18 14:19:38',0,'2017-12-18 14:28:01',0,0);
+INSERT INTO `tbl_promos` VALUES (1,'sample',1,'the quick brown fox',NULL,'2017-12-10 17:27:27',0,'2017-12-15 16:06:11',0,0),(2,'another',1,'another content',NULL,'2017-12-10 17:29:51',0,'2017-12-10 17:29:51',0,1),(3,'third sample',1,'this is the third sample',NULL,'2017-12-10 17:30:19',0,'2017-12-10 17:30:19',0,1),(4,'third sample',1,'this is the third samples',NULL,'2017-12-10 17:56:46',0,'2017-12-10 20:06:02',0,0),(5,'third sample',1,'this is the third samplesxxXXXX',NULL,'2017-12-10 17:58:02',0,'2017-12-10 20:06:19',0,0),(6,'natasha',1,'mrs ama xxx',NULL,'2017-12-11 10:46:05',0,'2017-12-11 10:46:23',0,0),(7,'With Thumb',1,'the quick brown fox jumped over the lazy',NULL,'2017-12-11 16:03:49',0,'2017-12-11 16:03:49',0,1),(8,'With thumb 2',1,'the qcuik',9,'2017-12-11 16:04:20',0,'2017-12-11 16:04:20',0,1),(9,'Star wars',1,'Obi wan kenobis',10,'2017-12-11 17:59:06',0,'2017-12-11 17:59:06',0,1),(10,'gaben the man',1,'hehe gaben',11,'2017-12-14 17:01:45',0,'2017-12-14 17:01:45',0,1),(11,'Girl o mine',1,'ohhh ohhh sweet girl oh mine',15,'2017-12-14 20:25:23',0,'2017-12-18 15:47:53',0,0),(12,'Cagayan Maps',1,'this is th ',17,'2017-12-14 20:47:24',0,'2017-12-14 20:47:24',0,1),(13,'Uber',1,'this is an uber...',25,'2017-12-17 10:21:57',0,'2017-12-17 10:21:57',0,1),(14,'Uber2',1,'ok now!',18,'2017-12-17 10:33:00',0,'2017-12-17 18:24:50',0,1),(15,'the title',1,'the quick brown',20,'2017-12-17 18:25:38',0,'2017-12-18 21:56:19',1,1),(16,'Galaxy',1,'Andromeda',28,'2017-12-18 14:19:38',0,'2017-12-18 14:28:01',0,0),(17,'My Promo',3,'fafafa',NULL,'2017-12-18 22:13:51',1,'2017-12-18 22:16:09',1,1);
 /*!40000 ALTER TABLE `tbl_promos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,7 +168,7 @@ CREATE TABLE `tbl_users` (
 
 LOCK TABLES `tbl_users` WRITE;
 /*!40000 ALTER TABLE `tbl_users` DISABLE KEYS */;
-INSERT INTO `tbl_users` VALUES (1,'admin','$6$rounds=5000$$sMRFTumkNQrHVoPorxwDcq28XtWGugIzXmpyXER0ZApF3uVMHwD.7MVB0k7LLEGcYOmDEXHTWL7gzURhWXDk./',24,0,'2017-12-02 23:39:37',0,'2017-12-16 11:20:10',0,1),(2,'gabe','123',21,0,'2017-12-15 13:14:15',0,'2017-12-15 15:58:19',0,0),(3,'steve','$6$rounds=5000$$5XILp8Aukkv0HPkhezpFmE7/Q4t5mn5rS.jIVdKWDIqmT/Nc04miUmnzh43JEEse3COYRNzP345yOG3dNUzCl0',22,1,'2017-12-15 15:57:27',0,'2017-12-15 15:57:27',0,1);
+INSERT INTO `tbl_users` VALUES (1,'admin','$6$rounds=5000$$sMRFTumkNQrHVoPorxwDcq28XtWGugIzXmpyXER0ZApF3uVMHwD.7MVB0k7LLEGcYOmDEXHTWL7gzURhWXDk./',24,0,'2017-12-02 23:39:37',0,'2017-12-16 11:20:10',0,1),(3,'steve','$6$rounds=5000$$5XILp8Aukkv0HPkhezpFmE7/Q4t5mn5rS.jIVdKWDIqmT/Nc04miUmnzh43JEEse3COYRNzP345yOG3dNUzCl0',22,1,'2017-12-15 15:57:27',0,'2017-12-15 15:57:27',0,1);
 /*!40000 ALTER TABLE `tbl_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-18 16:01:30
+-- Dump completed on 2017-12-18 23:37:41

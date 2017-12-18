@@ -2,10 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Upload extends CI_Controller {
 
+	public $current_user_session_id;
+	public $current_user_session_role;
+
 	public function __construct(){
 		parent::__construct();
 		$this->load->library( array('user_security', 'page_actions') );
 		$this->load->helper(array('form', 'url'));
+		$this->current_user_session_id = $this->session->CE_sess_user_id;
+		$this->current_user_session_role = $this->session->CE_sess_user_role;
     }
 
 	public function do_upload() {
@@ -43,7 +48,9 @@ class Upload extends CI_Controller {
 			'media_orig_name'		=>	$data['client_name'],
 			'media_type'			=>	$data['file_type'],
 			'media_extension'		=>	$data['file_ext'],
-			'media_extra_meta_data'	=>	json_encode($data)
+			'media_extra_meta_data'	=>	json_encode($data),
+			'media_created_by'		=>	$this->current_user_session_id,
+			'media_edited_by'		=>	$this->current_user_session_id
 		);
 		if ( $this->db->insert('tbl_media', $args) ) {
 			return $this->db->insert_id();;

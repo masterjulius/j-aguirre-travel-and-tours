@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $current_controller = $this->uri->segment(1);
+$user_role = $this->current_user_session_role;
 ?>
 <!-- Sidebar Holder -->
 <nav id="sidebar">
@@ -21,15 +22,19 @@ $current_controller = $this->uri->segment(1);
 		<li>
 			<a href="<?php echo site_url( '/administrator/social/') ?>">Social</a>
 		</li>
+	<?php if ($user_role == 0): ?>	
 		<li>
 			<a href="<?php echo site_url( '/administrator/users/') ?>">Users</a>
 		</li>
+	<?php endif; ?>
 		<li>
 			<a href="<?php echo site_url( '/administrator/account/') ?>">Account</a>
 		</li>
+	<?php if ($user_role == 0): ?>
 		<li>
 			<a href="<?php echo site_url( '/administrator/settings/') ?>">Settings</a>
 		</li>
+	<?php endif; ?>
 		<li>
 			<a href="<?php echo site_url( '/administrator/logout/') ?>">Sign Out</a>
 		</li>
